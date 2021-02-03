@@ -10,6 +10,7 @@ or try
 ```
 find ./ -name "*.pdf" | xargs -L1 -I% pdftotext % /mnt/c/dest/%.txt
 ```
+(`find` because the Stack commenters say that passing arguments to `xargs` using `ls` is bad form because it won't handle spaces or some other characters...)
 
 or try (puts it in another dir)
 ```
