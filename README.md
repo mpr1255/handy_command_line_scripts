@@ -11,14 +11,14 @@ or try
 find ./ -name "*.pdf" | xargs -L1 -I% pdftotext % /mnt/c/dest/%.txt
 ```
 
-or try
+or try (puts it in another dir)
 ```
 for f in *.pdf; do pdftotext "$f" "/mnt/c/dest/${f%.*}.txt"; done
 ```
 
 ## Iterate over subdirectories with for loop and output pdftotext results to a single directory
 ```
-for f in *.pdf **/*.pdf; do pdftotext -raw "`basename $f`" "/mnt/c/dest/${f%.*}.txt"; done
+for f in *.pdf **/*.pdf; do pdftotext "$f" "/mnt/c/dest/`basename ${f%.*}`.txt"; done
 ```
 
 ### Delete white space, tabs, newlines from txt file
