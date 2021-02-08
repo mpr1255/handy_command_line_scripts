@@ -47,5 +47,8 @@ for f in "`echo $(wslpath 'C:\Windows\Path\to\file.ext')`"; do pdftotext "$f" "/
 python C:\Users\dest\to\pdfannots-master\pdfannots.py "C:\dest\to\file.pdf" > output.txt
 ```
 
-
+## Delete all files of an extension in subdirectories
+```
+ find . -type f -name '*.ext' -delete
+ ```
 
