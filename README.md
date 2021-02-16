@@ -24,7 +24,7 @@ for f in *.pdf **/*.pdf; do pdftotext "$f" "/mnt/c/dest/`basename ${f%.*}`.txt";
 
 ### Delete white space, tabs, newlines from txt file
 ```
-for f in *.txt; do tr -d " \t\n\r" < "$f" > "${f%.txt}"--clean.txt; done
+for f in *.txt; do tr -d " \t\n\r" < "$f" > "/path/to/dest/${f%.txt}"--clean.txt; done
 ```
 
 ## Search for and highlight search term, output in html
