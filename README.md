@@ -50,5 +50,11 @@ python C:\Users\dest\to\pdfannots-master\pdfannots.py "C:\dest\to\file.pdf" > ou
 ## Delete all files of an extension in subdirectories
 ```
  find . -type f -name '*.ext' -delete
- ```
+```
+
+## Trip top few lines from a folder of pdfs; output in terminal
+
+```
+for f in *.pdf; do echo `pdftotext ${f} - | head -n 3 | tr -d '\n' |tr -d ':'`; done
+```
 
