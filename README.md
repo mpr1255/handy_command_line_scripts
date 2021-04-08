@@ -17,6 +17,11 @@ or try (puts it in another dir)
 for f in *.pdf; do pdftotext "$f" "/mnt/c/dest/${f%.*}.txt"; done
 ```
 
+### But use this! Because it makes a log and puts std errors in it!
+```
+for f in *.pdf; do pdftotext -raw "$f" "/mnt/c/dest/${f%.*}.txt" > >(tee -a stdout.log) 2> >(tee -a stderr.log >&2); done
+```
+
 ## Iterate over subdirectories with for loop and output pdftotext results to a single directory
 ```
 for f in *.pdf **/*.pdf; do pdftotext "$f" "/mnt/c/dest/`basename ${f%.*}`.txt"; done
@@ -52,9 +57,11 @@ python C:\Users\dest\to\pdfannots-master\pdfannots.py "C:\dest\to\file.pdf" > ou
  find . -type f -name '*.ext' -delete
 ```
 
-## Trip top few lines from a folder of pdfs; output in terminal
+## Grab top few lines from a folder of pdfs; output in terminal
 
 ```
 for f in *.pdf; do echo `pdftotext ${f} - | head -n 3 | tr -d '\n' |tr -d ':'`; done
 ```
 
+# Dump an elastic db
+for f in `cat target_text.txt`; do elasticdump --input="https://elastic:blablah/${f}" --output="${f}.json" --limit 500 --concurrency 5 --sourceOnly --noRefresh --fileSize 100 MB --fsCompress --type=data > >(tee -a stdout.log) 2> >(tee -a stderr.log >&2); done
