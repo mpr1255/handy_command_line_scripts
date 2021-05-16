@@ -1,6 +1,9 @@
 # Handy command line scripts
 A series of handy command line/bash/shell scripts I have found/munged in order to do stuff. 
 
+## Cat files with the filename
+find *.txt -type f -print0 | xargs -0 -I % sh -c 'echo %; cat %'
+
 ## Convert all pdf files in a folder to txt
 ```
 find ./ -name "*.pdf" -exec pdftotext {} \;
@@ -65,3 +68,10 @@ for f in *.pdf; do echo `pdftotext ${f} - | head -n 3 | tr -d '\n' |tr -d ':'`; 
 
 # Dump an elastic db
 for f in `cat target_text.txt`; do elasticdump --input="https://elastic:blablah/${f}" --output="${f}.json" --limit 500 --concurrency 5 --sourceOnly --noRefresh --fileSize 100 MB --fsCompress --type=data > >(tee -a stdout.log) 2> >(tee -a stderr.log >&2); done
+
+
+# wget a single page 
+wget -l 0 --mirror --convert-links --adjust-extension --page-requisites --no-parent http://news.sohu.com/20150306/n409390334.shtml
+
+# curl multiple URLS, save them with the html files, and dump into txt
+curl http://news.sohu.com/20170301/n482044089.shtml http://news.sohu.com/20161222/n476586079.shtml -O - -- >> curl_output.txt
