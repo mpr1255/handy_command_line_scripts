@@ -1,6 +1,14 @@
 # Handy command line scripts
 A series of handy command line/bash/shell scripts I have found/munged in order to do stuff. 
 
+## delete files of a certain type and size
+find . -name "*.tif" -type 'f' -size -160k -delete
+(-160k for less than, 160k for exactly; +160k for greater than. -type 'f' for only touching files, not recursing into folders)
+
+find . -name "*.html" -type 'f' -size -3k -delete
+
+
+
 ## Cat files with the filename
 find *.txt -type f -print0 | xargs -0 -I % sh -c 'echo %; cat %'
 
