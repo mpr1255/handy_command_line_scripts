@@ -7,7 +7,8 @@ find . -name "*.tif" -type 'f' -size -160k -delete
 
 find . -name "*.html" -type 'f' -size -3k -delete
 
-
+# get all github shortlinks of a text file
+for f in `cat links.txt`; do curl -i https://git.io -F url=${f} >> "output.txt"; done
 
 ## Cat files with the filename
 find *.txt -type f -print0 | xargs -0 -I % sh -c 'echo %; cat %'
@@ -83,3 +84,7 @@ wget -l 0 --mirror --convert-links --adjust-extension --page-requisites --no-par
 
 # curl multiple URLS, save them with the html files, and dump into txt
 curl http://news.sohu.com/20170301/n482044089.shtml http://news.sohu.com/20161222/n476586079.shtml -O - -- >> curl_output.txt
+
+
+# cut crop delete pages from a pdf
+pdftk "input.pdf" cat 2-end output "input1.pdf"
