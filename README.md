@@ -86,5 +86,9 @@ wget -l 0 --mirror --convert-links --adjust-extension --page-requisites --no-par
 curl http://news.sohu.com/20170301/n482044089.shtml http://news.sohu.com/20161222/n476586079.shtml -O - -- >> curl_output.txt
 
 
-# cut crop delete pages from a pdf
+# delete pages from a pdf
 pdftk "input.pdf" cat 2-end output "input1.pdf"
+
+# combine a pdf together
+go to a folder where the pdf is and make sure ls displays it in order you want combined. then 
+pdftk `ls *.pdf` cat output merged.pdf
