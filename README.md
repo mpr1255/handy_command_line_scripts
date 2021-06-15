@@ -10,6 +10,10 @@ find . -name "*.html" -type 'f' -size -3k -delete
 # get all github shortlinks of a text file
 for f in `cat links.txt`; do curl -i https://git.io -F url=${f} >> "output.txt"; done
 
+# get one github shortlink
+curl -i https://git.io -F url=https://github.com/mpr1255/robin/raw/main/munro_bibliography.docx
+
+
 ## Cat files with the filename
 find *.txt -type f -print0 | xargs -0 -I % sh -c 'echo %; cat %'
 
@@ -48,6 +52,15 @@ for f in *.txt; do tr -d " \t\n\r" < "$f" > "/path/to/dest/${f%.txt}"--clean.txt
 ```
 ack [TERM HERE] -C3 --group --color --color-match='rgb555 on_rgb505' --color-filename='bold underline rgb000 on_rgb550' --sort-files --max-count=10 --column | aha > output.html -w
 ```
+
+## rga search for a term, then another, highlight and output in html
+```
+rga [TERM HERE] -C10 --color always --heading --column | aha > output.html -w
+
+rga [TERM] -C10 --color always --heading --column --colors 'match:fg:blue' --colors 'match:bg:yellow' | rg ".pdf|[OTHER TERM]" -C10 --color always --heading --column --colors 'match:fg:blue' --colors 'match:bg:yellow' | aha > output.html -w
+```
+
+
 
 ## Convert all html files in a folder into txt using html2text
 ```
