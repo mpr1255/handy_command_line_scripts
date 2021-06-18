@@ -48,7 +48,7 @@ for f in *.pdf **/*.pdf; do pdftotext "$f" "/mnt/c/dest/`basename ${f%.*}`.txt";
 for f in *.txt; do tr -d " \t\n\r" < "$f" > "/path/to/dest/${f%.txt}"--clean.txt; done
 ```
 
-## Search for and highlight search term, output in html
+## ack Search for and highlight search term, output in html
 ```
 ack [TERM HERE] -C3 --group --color --color-match='rgb555 on_rgb505' --color-filename='bold underline rgb000 on_rgb550' --sort-files --max-count=10 --column | aha > output.html -w
 ```
@@ -105,3 +105,6 @@ pdftk "input.pdf" cat 2-end output "input1.pdf"
 # combine a pdf together
 go to a folder where the pdf is and make sure ls displays it in order you want combined. then 
 pdftk `ls *.pdf` cat output merged.pdf
+
+## rg search inside files of a certain type recursively 
+rg "term" -g *.Rmd
