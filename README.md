@@ -108,3 +108,9 @@ pdftk `ls *.pdf` cat output merged.pdf
 
 ## rg search inside files of a certain type recursively 
 rg "term" -g *.Rmd
+
+## return exact string match when searching
+cat file.ext | rg -o -e '[a-z0-9]{32}' 
+
+## return exact string match when searching then unique them
+cat file.ext | rg -o -e '[a-z0-9]{32}' | sort -u
