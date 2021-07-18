@@ -114,3 +114,12 @@ cat file.ext | rg -o -e '[a-z0-9]{32}'
 
 ## return exact string match when searching then unique them
 cat file.ext | rg -o -e '[a-z0-9]{32}' | sort -u
+
+## delete files with a certain string using rg 
+grep -l email@domain.com * | xargs rm
+
+or safer:
+
+find . | xargs grep -l email@domain.com | awk '{print "rm "$1}' > doit.sh
+vi doit.sh // check for murphy and his law
+source doit.sh
