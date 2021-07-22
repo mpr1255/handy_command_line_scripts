@@ -104,7 +104,7 @@ pdftk "input.pdf" cat 2-end output "input1.pdf"
 
 # combine a pdf together
 go to a folder where the pdf is and make sure ls displays it in order you want combined. then 
-pdftk `ls *.pdf` cat output merged.pdf
+pdftk `ls *.pdf` cat output 'all_to_print_20210722_1504.pdf'
 
 ## rg search inside files of a certain type recursively 
 rg "term" -g *.Rmd
@@ -123,3 +123,6 @@ or safer:
 find . | xargs grep -l email@domain.com | awk '{print "rm "$1}' > doit.sh
 vi doit.sh // check for murphy and his law
 source doit.sh
+
+# loop over links in a text file and curl them to their own names
+for f in `cat links.txt`; do curl -c cookiejar.txt -g -O -J -L "${f}"   -H 'Upgrade-Insecure-Requests: 1'   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36'   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'   -H 'Sec-GPC: 1'   --compressed   --insecure -o fileout.pdf; done
