@@ -109,13 +109,18 @@ pdftk `ls *.pdf` cat output 'all_to_print_20210722_1504.pdf'
 ## rg search inside files of a certain type recursively 
 rg "term" -g *.Rmd
 
-## return exact string match when searching
+rg "邪教" -g "邪教*.html"
+
+## rg ripgrep files for a regex string, match only that string, and dump in a doc
+rg -o "[0-9a-z]{32}"  -I | sort -u  > docids.txt
+
+## rg return exact string match when searching
 cat file.ext | rg -o -e '[a-z0-9]{32}' 
 
-## return exact string match when searching then unique them
+## rg return exact string match when searching then unique them
 cat file.ext | rg -o -e '[a-z0-9]{32}' | sort -u
 
-## delete files with a certain string using rg 
+## rg delete files with a certain string using rg 
 grep -l email@domain.com * | xargs rm
 
 or safer:
