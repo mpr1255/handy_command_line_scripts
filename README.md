@@ -72,6 +72,9 @@ for file in *.html; do html2text -utf8 -nobs -style pretty "$file" > "$file.txt"
 for f in "`echo $(wslpath 'C:\Windows\Path\to\file.ext')`"; do pdftotext "$f" "/mnt/c/to/dest/ `echo ${f##*/}.txt`"; done
 ```
 
+## Crop pdfs and put into another folder
+for f in *.pdf; do pdfcrop --margins '-30 -30 -30 -30' "$f" "`echo ${f%.*}_output.pdf`"; done
+
 ## Extract annotations from pdf files (requires pdfannots.py); run from Anaconda prompt
 ```
 python C:\Users\dest\to\pdfannots-master\pdfannots.py "C:\dest\to\file.pdf" > output.txt
