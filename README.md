@@ -33,7 +33,7 @@ or try (puts it in another dir)
 for f in *.pdf; do pdftotext "$f" "/mnt/c/dest/${f%.*}.txt"; done
 ```
 
-### But use this! Because it makes a log and puts std errors in it!
+### pdftotext But use this! Because it makes a log and puts std errors in it!
 ```
 for f in *.pdf; do pdftotext -raw "$f" "/mnt/c/dest/${f%.*}.txt" > >(tee -a stdout.log) 2> >(tee -a stderr.log >&2); done
 ```
