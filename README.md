@@ -1,6 +1,8 @@
 # Handy command line scripts
 A series of handy command line/bash/shell scripts I have found/munged in order to do stuff. 
 
+
+
 ## delete files of a certain type and size
 find . -name "*.tif" -type 'f' -size -160k -delete
 (-160k for less than, 160k for exactly; +160k for greater than. -type 'f' for only touching files, not recursing into folders)
@@ -16,6 +18,9 @@ curl -i https://git.io -F url=https://github.com/mpr1255/robin/raw/main/munro_bi
 
 ## Cat files with the filename
 find *.txt -type f -print0 | xargs -0 -I % sh -c 'echo %; cat %'
+
+
+## Convert all pdf files in a folder if they're partially done already
 
 ## Convert all pdf files in a folder to txt
 ```
@@ -95,7 +100,7 @@ for f in *.pdf; do echo `pdftotext ${f} - | head -n 3 | tr -d '\n' |tr -d ':'`; 
 for f in `cat target_text.txt`; do elasticdump --input="https://elastic:blablah/${f}" --output="${f}.json" --limit 500 --concurrency 5 --sourceOnly --noRefresh --fileSize 100 MB --fsCompress --type=data > >(tee -a stdout.log) 2> >(tee -a stderr.log >&2); done
 
 
-# wget a single page 
+# wget a single page
 wget -l 0 --mirror --convert-links --adjust-extension --page-requisites --no-parent http://news.sohu.com/20150306/n409390334.shtml
 
 # curl multiple URLS, save them with the html files, and dump into txt
@@ -109,7 +114,7 @@ pdftk "input.pdf" cat 2-end output "input1.pdf"
 go to a folder where the pdf is and make sure ls displays it in order you want combined. then 
 pdftk `ls *.pdf` cat output 'all_to_print_20210722_1504.pdf'
 
-## rg search inside files of a certain type recursively 
+## rg search inside files of a certain type recursively
 rg "term" -g *.Rmd
 
 rg "邪教" -g "邪教*.html"
@@ -123,7 +128,7 @@ cat file.ext | rg -o -e '[a-z0-9]{32}'
 ## rg return exact string match when searching then unique them
 cat file.ext | rg -o -e '[a-z0-9]{32}' | sort -u
 
-## rg delete files with a certain string using rg 
+## rg delete files with a certain string using rg
 grep -l email@domain.com * | xargs rm
 
 or safer:
