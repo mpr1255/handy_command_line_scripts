@@ -43,6 +43,7 @@ for f in *.pdf; do pdftotext "$f" "/mnt/c/dest/${f%.*}.txt"; done
 for f in *.pdf; do pdftotext -raw "$f" "/mnt/c/dest/${f%.*}.txt" > >(tee -a stdout.log) 2> >(tee -a stderr.log >&2); done
 ```
 
+
 ## Iterate over subdirectories with for loop and output pdftotext results to a single directory
 ```
 for f in *.pdf **/*.pdf; do pdftotext "$f" "/mnt/c/dest/`basename ${f%.*}`.txt"; done
@@ -139,3 +140,6 @@ source doit.sh
 
 # loop over links in a text file and curl them to their own names
 for f in `cat links.txt`; do curl -c cookiejar.txt -g -O -J -L "${f}"   -H 'Upgrade-Insecure-Requests: 1'   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36'   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'   -H 'Sec-GPC: 1'   --compressed   --insecure -o fileout.pdf; done
+
+# rsync best options
+rsync -avhW --no-compress --progress /src/ /dst/
