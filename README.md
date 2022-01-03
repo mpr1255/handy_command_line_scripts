@@ -1,6 +1,7 @@
 # Handy command line scripts
 A series of handy command line/bash/shell scripts I have found/munged in order to do stuff. 
 
+Very useful reference: https://apoorvalal.github.io/notebook/computing/
 
 
 ## delete files of a certain type and size
